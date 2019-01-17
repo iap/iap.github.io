@@ -1,0 +1,22 @@
+environment:
+  matrix:
+    - node_version: '8'
+    - node_version: '10'
+    
+branches:
+  only:
+    - master
+
+install:
+  - ps: 'Install-Product node $env:node_version'
+  - yarn
+
+cache:
+  - node_modules
+  - "%LOCALAPPDATA%\\Yarn"
+
+test_script:
+  - yarn test
+
+# Don't actually build.
+build: off

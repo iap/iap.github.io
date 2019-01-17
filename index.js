@@ -1,1 +1,1 @@
-module.exports = { iap }
+console.log("Hello World!")

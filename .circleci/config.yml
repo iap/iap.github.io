@@ -1,0 +1,43 @@
+---
+version: 2
+
+defaults: &defaults
+  working_directory: ~/root
+  docker:
+    - image: 'circleci/node:10'
+
+jobs:
+  build:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run:
+          name: update-npm
+          command: 'sudo npm install -g npm@latest'
+
+      - run: 
+          name: Bootstrap
+          command: yarn --frozen-lockfile
+
+      - run:
+          name: Test
+          command: yarn test
+
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+          paths:
+           - node_modules
+           - ~/.cache/yarn
+
+workflows:
+  version: 2
+  test-deploy:
+    jobs:
+      - build
