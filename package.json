@@ -4,7 +4,7 @@
   "description": "iap",
   "main": "index.js",
   "scripts": {
-    "clean": "rm -rf node_modules",
+    "clean": "rimraf node_modules/",
     "test": "ava"
   },
   "repository": {
@@ -17,7 +17,9 @@
     "url": "https://github.com/iap/.github/issues"
   },
   "homepage": "https://github.com/iap/.github#readme",
-  "dependencies": {},
+  "dependencies": {
+    "rimraf": "^3.0.0"
+  },
   "devDependencies": {
     "ava": "^1.0.1"
   }
