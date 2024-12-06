@@ -3,7 +3,7 @@ name: Deploy to localhost
 on:
   push:
     branches:
-      - main  # Deploy only on pushes to "main"
+      - master
 
 jobs:
   deploy:
