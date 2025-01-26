@@ -16,3 +16,6 @@
 *.otf binary
 *.woff binary
 *.woff2 binary
+
+# License file filter
+LICENSE filter=license-text
